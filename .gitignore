@@ -1,0 +1,18 @@
+# Ignorar todos los archivos .log
+*.log
+
+# Ignorar archivos grandes de datos
+*.csv
+*.h5
+*.mp4
+
+# Ignorar carpetas específicas
+__pycache__/
+.ipynb_checkpoints/
+output/
+temp/
+data/TCGA.BRCA.sampleMap_HiSeqV2/
+
+# Ignorar archivos temporales de sistemas operativos
+.DS_Store
+Thumbs.db
