@@ -2,7 +2,6 @@
 *.log
 
 # Ignorar archivos grandes de datos
-*.csv
 *.h5
 *.mp4
 
