@@ -14,11 +14,11 @@ LOW, HIGH = 0.35, 0.55
 CONF_LIM = 0.10
 
 X = pd.read_csv(
-    r"C:/Users/axime/Desktop/proyecto_final/pruebas_finales/vae_embeddings.csv",
+    "../data/vae_embeddings.csv",
     index_col=0
 ).values
 y = pd.read_csv(
-    r"C:/Users/axime/Desktop/proyecto_final/pruebas_finales/y_labels.csv",
+    "../data/y_labels.csv",
     index_col=0
 ).values.ravel().astype(int)
 
@@ -26,7 +26,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.20, stratify=y, random_state=SEED
 )
 
-probs_rf_file = r"C:/Users/axime/Desktop/proyecto_final/probs_rf_test.csv"
+probs_rf_file = "../data/probs_rf_test.csv"
 probs_rf = pd.read_csv(probs_rf_file)["prob_RF"].values
 
 mask_gris = (probs_rf >= LOW) & (probs_rf <= HIGH)
@@ -50,7 +50,7 @@ xgb.fit(Xg, yg)
 
 # ------------------ 3. Random Forest base ------------------
 rf_final = joblib.load(
-    r"C:/Users/axime/Desktop/proyecto_final/rf_vae_smote_opt.pkl"
+    "../models/rf_vae_smote_opt.pkl"
 )
 prob_rf_test = rf_final.predict_proba(X_test)[:, 1]
 pred_hibrido = (prob_rf_test >= 0.5).astype(int)
@@ -76,7 +76,7 @@ print("AUPRC híbrido :", round(average_precision_score(y_test, prob_hibrido), 4
 print("Confusion:\n", confusion_matrix(y_test, pred_hibrido))
 
 # ------------------ 6. Guardado ------------------
-out_dir = r"C:/Users/axime/Desktop/proyecto_final/hibrido_xgb_zonagris"
+out_dir = "hibrido_xgb_zonagris"
 import os
 os.makedirs(out_dir, exist_ok=True)
 joblib.dump(xgb, os.path.join(out_dir, "xgb_submodelo.pkl"))

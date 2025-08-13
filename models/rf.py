@@ -138,9 +138,9 @@ def print_tree(node, depth=0):
 
 
 # --------------------------- Cargar datos ---------------------------
-X = pd.read_csv(r"C:\Users\axime\Desktop\proyecto_final\pruebas_finales\vae_embeddings.csv",
+X = pd.read_csv("../data/vae_embeddings.csv",
                 index_col=0).values
-y = pd.read_csv(r"C:\Users\axime\Desktop\proyecto_final\pruebas_finales\y_labels.csv",
+y = pd.read_csv("../data/y_labels.csv",
                 index_col=0).values.ravel().astype(int)
 
 # Split 80/20

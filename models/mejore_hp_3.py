@@ -12,10 +12,10 @@ warnings.filterwarnings("ignore")
 
 # ---------- 1. Cargar datos ----------
 X = pd.read_csv(
-        r"C:\Users\axime\Desktop\proyecto_final\pruebas_finales\vae_embeddings.csv",
+        "../data/vae_embeddings.csv",
         index_col=0).values
 y = pd.read_csv(
-        r"C:\Users\axime\Desktop\proyecto_final\pruebas_finales\y_labels.csv",
+        "../data/y_labels.csv",
         index_col=0).values.ravel().astype(int)
 
 # ---------- 2. Split 80/20 ----------
@@ -71,6 +71,6 @@ print("AUCPR :", round(average_precision_score(y_test, probs), 4))
 print("Confusion:\n", confusion_matrix(y_test, preds))
 
 # ---------- 7. Guardar modelo ----------
-out = Path(r"C:\Users\axime\Desktop\proyecto_final\rf_vae_smote_opt.pkl")
+out = Path("rf_vae_smote_opt.pkl")
 joblib.dump(best_model, out)
 print(f"\n✅ Modelo guardado en {out}")
